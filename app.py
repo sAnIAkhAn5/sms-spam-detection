@@ -5,9 +5,10 @@ from nltk.corpus import stopwords
 import string
 from nltk.stem.porter import PorterStemmer
 
-# NLTK download lines HATADO (setup.sh handle karega)
-# nltk.download('punkt')
-# nltk.download('stopwords')
+# Download NLTK data
+nltk.download('punkt')
+nltk.download('punkt_tab')
+nltk.download('stopwords')
 
 ps = PorterStemmer()
 
@@ -35,10 +36,12 @@ def transform_text(text):
     
     return " ".join(y)
 
+# Load models
 tfidf = pickle.load(open('vectorizer.pkl', 'rb'))
 model = pickle.load(open('model.pkl', 'rb'))
 
-st.title("SMS Spam Classifier")
+# UI
+st.title("📱 SMS Spam Classifier")
 st.write("Enter your message below to check if it's Spam or Ham")
 
 input_sms = st.text_area("Message")
@@ -49,7 +52,7 @@ if st.button('Predict'):
     result = model.predict(vector_input)[0]
     
     if result == 1:
-        st.header("Spam")
+        st.header("🚨 Spam")
     else:
-        st.header("Not Spam")
+        st.header("✅ Not Spam")
     
