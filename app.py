@@ -37,8 +37,8 @@ def transform_text(text):
     return " ".join(y)
 
 # Load models
-tfidf = pickle.load(open('vectorizer.pkl', 'rb'))
-model = pickle.load(open('model.pkl', 'rb'))
+tfidf = pickle.load(open('vectorizer.pkl', 'rb'),encoding='latin-1')
+model = pickle.load(open('model.pkl', 'rb'),encoding='latin-1')
 
 # UI
 st.title("📱 SMS Spam Classifier")
